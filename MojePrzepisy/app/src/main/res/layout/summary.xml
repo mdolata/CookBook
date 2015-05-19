@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0.25">
+
+        <ImageView
+            android:layout_width="414dp"
+            android:layout_height="321dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/sarny" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0.29"
+        android:background="#ff414754"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center|center_horizontal">
+
+            <TextView
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:text="Balotyna z perliczki i sarny na musie z burakow "
+                android:id="@+id/textView"
+                android:textColor="#ffffffff"
+                android:focusableInTouchMode="true"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                android:paddingStart="20dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40"
+        android:background="#ffffffff"
+        android:weightSum="1"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton2" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton3" />
+    </LinearLayout>
+</LinearLayout>
