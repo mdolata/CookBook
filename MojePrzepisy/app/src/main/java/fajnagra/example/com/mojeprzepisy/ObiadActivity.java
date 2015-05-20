@@ -1,9 +1,7 @@
 package fajnagra.example.com.mojeprzepisy;
 
-import android.app.ActionBar;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentManager;
@@ -12,11 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 /**
  * Created by kgb on 19.05.2015.
  */
-public class ObiadActivity extends FragmentActivity implements ActionBar.TabListener{
+public class ObiadActivity extends FragmentActivity {
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
     public void onCreate(Bundle savedInstanceState) {
@@ -39,23 +38,27 @@ public class ObiadActivity extends FragmentActivity implements ActionBar.TabList
             }
         });
     }
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        mViewPager.setCurrentItem(tab.getPosition());
+    public static class Skladniki extends  Fragment{
+        ListView list;
+        WierszAdapter adapter;
+        Skladnik[] data = new Skladnik[2];
+        @Override
+        public  View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            View view = inflater.inflate(R.layout.skladniki,container,false);
+            data[0] = new Skladnik(100,1,"Papier Toaletowy");
+            data[1] = new Skladnik(100,1,"Proszek");
+            adapter = new WierszAdapter(view.getContext(), R.layout.wiersz, data);
+            list = (ListView)view.findViewById(R.id.Lista);
+            list.setAdapter(adapter);
+            return view;
+        }
+
     }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-    public static class ObiadSumarry extends Fragment{
+    public static class ObiadSummary extends Fragment{
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
             View rootView = inflater.inflate(R.layout.summary, container, false);
             return rootView;
         }
@@ -65,10 +68,13 @@ public class ObiadActivity extends FragmentActivity implements ActionBar.TabList
         public AppSectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-        
+
         @Override
         public Fragment getItem(int i) {
-            return new ObiadSumarry();
+            if(i==0)
+                return new ObiadSummary();
+            else
+                return new Skladniki();
         }
 
         @Override
