@@ -57,28 +57,79 @@
         android:layout_weight="0.40"
         android:background="#ffffffff"
         android:weightSum="1"
-        android:layout_gravity="center_horizontal"
         android:paddingStart="30dp">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="fill_parent"
+            android:layout_width="97dp"
             android:layout_height="fill_parent"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.24">
 
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:id="@+id/imageView2"
                 android:src="@drawable/clock"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30 min"
                 android:id="@+id/textView2"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="93dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/imageView3"
+                android:src="@drawable/people"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 osoby"
+                android:id="@+id/textView4"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="87dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.37">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/imageView4"
+                android:src="@drawable/low"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latwe"
+                android:id="@+id/textView5"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

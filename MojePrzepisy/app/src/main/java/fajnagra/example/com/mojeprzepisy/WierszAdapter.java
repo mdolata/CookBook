@@ -31,6 +31,7 @@ public class WierszAdapter extends ArrayAdapter<Skladnik> {
             holder = new RowBeanHolder();
             holder.nazwa = (TextView)view.findViewById(R.id.nazwa);
             holder.ilosc = (TextView) view.findViewById(R.id.ilosc);
+            holder.jednostka = (TextView) view.findViewById(R.id.jednostka);
             view.setTag(holder);
         }
         else{
@@ -39,12 +40,14 @@ public class WierszAdapter extends ArrayAdapter<Skladnik> {
         Skladnik object = data[position];
         holder.nazwa.setText(object.getNazwa());
         holder.ilosc.setText(Integer.toHexString(object.getIlosc()));
+        holder.jednostka.setText(object.getJednoska());
         return  view;
     }
 
     private static class RowBeanHolder{
         private TextView nazwa;
         private TextView ilosc;
+        private TextView jednostka;
     }
 
 }

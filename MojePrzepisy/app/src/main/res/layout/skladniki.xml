@@ -11,24 +11,43 @@
         android:layout_height="fill_parent"
         android:background="#ffffffff">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="       Skladniki"
-            android:id="@+id/textView3"
-            android:textSize="35dp"
-            android:background="#ff414754"
-            android:textStyle="italic" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff414754"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="243dp"
+                android:layout_height="60dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="       Skladniki"
+                android:id="@+id/textView3"
+                android:textSize="35dp"
+                android:textStyle="italic"
+                android:layout_weight="0.89" />
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:text="+"
+                android:id="@+id/button2"
+                android:textSize="30dp"
+                android:background="#ff1cbe75"
+                android:layout_weight="0.14" />
+
+        </LinearLayout>
 
         <ListView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/Lista"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#ffffff"
             android:divider="#000000"
             android:dividerHeight="1dp" />
+
     </LinearLayout>
 
 </RelativeLayout>

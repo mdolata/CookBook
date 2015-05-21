@@ -46,8 +46,8 @@ public class ObiadActivity extends FragmentActivity {
         public  View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             View view = inflater.inflate(R.layout.skladniki,container,false);
-            data[0] = new Skladnik(100,1,"Papier Toaletowy");
-            data[1] = new Skladnik(100,1,"Proszek");
+            data[0] = new Skladnik(100,1,"Papier Toaletowy","rolka");
+            data[1] = new Skladnik(100,1,"Proszek","");
             adapter = new WierszAdapter(view.getContext(), R.layout.wiersz, data);
             list = (ListView)view.findViewById(R.id.Lista);
             list.setAdapter(adapter);
