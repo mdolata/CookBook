@@ -39,7 +39,7 @@ public class WierszAdapter extends ArrayAdapter<Skladnik> {
         }
         Skladnik object = data[position];
         holder.nazwa.setText(object.getNazwa());
-        holder.ilosc.setText(Integer.toHexString(object.getIlosc()));
+        holder.ilosc.setText(Integer.toString(object.getIlosc()));
         holder.jednostka.setText(object.getJednoska());
         return  view;
     }

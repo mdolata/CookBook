@@ -1,11 +1,9 @@
 package fajnagra.example.com.mojeprzepisy;
 
-import java.io.Serializable;
-
 /**
  * Created by kgb on 20.05.2015.
  */
-public class Skladnik implements Serializable {
+public class Skladnik  {
     private final int ilosc,index;
     private final String nazwa,jednoska;
 
