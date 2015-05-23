@@ -23,13 +23,14 @@ public class  PrzepisFragment extends Fragment {
     private Intent mServiceIntent;
     private Obiad obiad;
     private static CountDownTimer c;
-    private TextView przepis,kroki_txt,czas,lcd;
+    private TextView przepis,kroki_txt,lcd;
     private Button prev,next,pauza,stop,play;
     private int len,czas_v;
     private int i;
     public  boolean leci,pauza_v;
-
+    public PrzepisFragment(){}
     public PrzepisFragment(Obiad obiad){
+        this();
         this.obiad=obiad;
         len=obiad.getKroki();
     }
@@ -39,7 +40,6 @@ public class  PrzepisFragment extends Fragment {
         super.onCreate(savedInstanceState);
         final View rootView = inflater.inflate(R.layout.przepis, container, false);
         przepis = (TextView)rootView.findViewById(R.id.przepis);
-        czas = (TextView)rootView.findViewById(R.id.czas);
         lcd = (TextView)rootView.findViewById(R.id.lcd);
         kroki_txt = (TextView)rootView.findViewById(R.id.kroki_txt);
         play = (Button)rootView.findViewById(R.id.play);
@@ -120,10 +120,8 @@ public class  PrzepisFragment extends Fragment {
         if(!leci)
             czas_v = obiad.getPrzepis(i).getCzas();
         przepis.setText(obiad.getPrzepis(i).text + "");
-        czas.setText(czas_v+" min");
         setLcd();
         kroki_txt.setText("    Krok" + (i + 1) + "/" + len);
-
     }
     public void setLcd(){
         if(czas_v<10) {

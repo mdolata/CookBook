@@ -36,7 +36,7 @@ public class ObiadActivity extends FragmentActivity {
         data[2] = new Skladnik(100,3,"Wodka zubrowka","ml");
         data[3] = new Skladnik(7,4,"Kapusta Wloska","lisci");
         data[4] = new Skladnik(80,5,"Wedzona szynka","g");
-        obiad = new Obiad(data,1,4,kroki,"Balotyna z perliczki i sarny na musie z burakow z sosem z szalotek");
+        obiad = new Obiad(R.drawable.sarny,data,1,4,kroki,"Balotyna z perliczki i sarny na musie z burakow z sosem z szalotek");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.obiad_main);
         mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());

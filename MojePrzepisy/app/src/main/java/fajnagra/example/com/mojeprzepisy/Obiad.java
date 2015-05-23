@@ -5,17 +5,17 @@ package fajnagra.example.com.mojeprzepisy;
  */
 public class Obiad {
     private Skladnik[] skladniki;
-    private int czas,poziom,ilosc,kroki;
+    private int poziom,ilosc,kroki,imgId;
     private String nazwa;
     private Przepis[] przepis;
 
-    public Obiad(Skladnik[] skladniki,int poziom,int ilosc,Przepis[] przepis,String nazwa){
+    public Obiad(int imgId,Skladnik[] skladniki,int poziom,int ilosc,Przepis[] przepis,String nazwa){
         this.poziom=poziom;
         this.ilosc=ilosc;
         this.przepis=przepis;
         this.skladniki=skladniki;
         kroki = przepis.length;
-        czas = getCzas();
+        this.imgId=imgId;
         this.nazwa=nazwa;
     }
     public Przepis getPrzepis(int i){return przepis[i];}
@@ -23,6 +23,7 @@ public class Obiad {
     public int getPoziom(){return poziom;}
     public int getIlosc(){return ilosc;}
     public int getKroki(){return kroki;}
+    public int getImgId(){return imgId;}
 
     public int getCzas(){
         int result=0;
