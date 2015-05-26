@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context=".Main" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff1cbe75"
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:text="&lt;"
+                android:id="@+id/prev"
+                android:onClick="clickPrev"
+                android:textSize="30dp"
+                android:background="#ff1cbe75"
+                android:layout_weight="0.14" />
+
+            <TextView
+                android:layout_width="243dp"
+                android:layout_height="60dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="    Krok 0/0"
+                android:id="@+id/kroki_txt"
+                android:textSize="35dp"
+                android:textStyle="italic"
+                android:layout_weight="0.89"
+                android:layout_gravity="center"
+                android:background="#ff414754"
+                android:paddingTop="10dp" />
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:text=">"
+                android:id="@+id/next"
+                android:onClick="clickNext"
+                android:textSize="30dp"
+                android:background="#ff1cbe75"
+                android:layout_weight="0.14" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="149dp"
+            android:weightSum="1"
+            android:layout_weight="0.97">
+
+            <TextView
+                android:layout_width="311dp"
+                android:layout_height="wrap_content"
+                android:text="Nie Dodano przepisu"
+                android:id="@+id/przepis"
+                android:layout_gravity="center_horizontal"
+                android:textSize="14dp"
+                android:textColor="#ff414754"
+                android:layout_weight="0.66"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/background"
+                android:paddingStart="5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp">
+
+                <Button
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:text="||"
+                    android:id="@+id/pauza"
+                    android:background="#ff1cbe75"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:text=">"
+                    android:id="@+id/play"
+                    android:background="#ff1cbe75"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:text="X"
+                    android:id="@+id/stop"
+                    android:background="#ff1cbe75"
+                    android:textSize="40dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:background="#ff414754">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:text="00:00"
+                        android:id="@+id/lcd"
+                        android:layout_gravity="bottom"
+                        android:background="#ff414754"
+                        android:textSize="35dp"
+                        android:paddingStart="25dp"
+                        android:paddingTop="15dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

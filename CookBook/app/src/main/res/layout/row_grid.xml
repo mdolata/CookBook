@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/sarny"
+        android:layout_marginLeft="5dp"
+        android:paddingTop="20dp">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:textSize="15dp"
+        android:text="6666666666666666666666666666666666666666666666666666666666"
+        android:background="@drawable/background"
+        android:enabled="true"
+        android:textColor="#ff424242"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="2"
+        android:paddingStart="5dp">
+    </TextView>
+
+</LinearLayout>
