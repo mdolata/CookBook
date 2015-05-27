@@ -144,18 +144,23 @@ public class MainActivity extends Activity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = new Obiady();
-        Bundle args = new Bundle();
-        args.putInt("ID", position);
-        fragment.setArguments(args);
+        if(getResources().getStringArray(R.array.obiad_array)[position].equals("Nowy")){
+            Intent intent = new Intent(getApplicationContext(), Formularz.class);
+            startActivity(intent);
+        }
+        else {
+            Fragment fragment = new Obiady();
+            Bundle args = new Bundle();
+            args.putInt("ID", position);
+            fragment.setArguments(args);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-        // update selected item and title, then close the drawer
-        list.setItemChecked(position, true);
-        setTitle(list_titles[position]);
-        mDrawerLayout.closeDrawer(list);
+            list.setItemChecked(position, true);
+            setTitle(list_titles[position]);
+            mDrawerLayout.closeDrawer(list);
+        }
     }
 
     public static class Obiady extends Fragment{

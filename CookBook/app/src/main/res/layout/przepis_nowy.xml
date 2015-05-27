@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff414754"
+    tools:context=".Main" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffffff">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff414754"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="243dp"
+                android:layout_height="60dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="       Przepis"
+                android:id="@+id/textView3"
+                android:textSize="35dp"
+                android:textStyle="italic"
+                android:layout_weight="0.89" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="280dp"
+                android:background="@drawable/background"
+                android:layout_height="150dp">
+
+                <EditText
+                    android:layout_width="280dp"
+                    android:layout_height="150dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/tekst"
+                    android:background="@drawable/background"
+                    android:textSize="14dp"
+                    android:paddingStart="15dp"
+                    android:textColor="#ff414754"
+                    android:text="                            tekst" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <Button
+                    android:layout_width="95dp"
+                    android:layout_height="70dp"
+                    android:text="+"
+                    android:id="@+id/add"
+                    android:textSize="35dp"
+                    android:background="#ff1cbe75" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:background="@drawable/background"
+                    android:id="@+id/czas"
+                    android:textSize="25dp"
+                    android:textColor="#ff414754"
+                    android:paddingStart="10dp"
+                    android:text="czas" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/Lista"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:divider="#000000"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

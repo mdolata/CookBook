@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:background="#ffdadada">
+
+        <TextView
+            android:layout_width="373dp"
+            android:layout_height="120dp"
+            android:text="New Text"
+            android:id="@+id/przepis"
+            android:paddingStart="17dp"
+            android:textColor="#ff414754"
+            android:paddingTop="15dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="#ffffffff">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView4"
+                android:src="@drawable/clock" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="czas min"
+                android:id="@+id/czas"
+                android:textColor="#ff414754" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

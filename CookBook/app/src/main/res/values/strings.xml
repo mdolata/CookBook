@@ -10,5 +10,6 @@
     <string-array name="obiad_array">
         <item>Dania Glowne</item>
         <item>Zupy</item>
+        <item>Nowy</item>
     </string-array>
 </resources>
