@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -56,6 +57,7 @@ public class Formularz extends FragmentActivity {
         private EditText nazwa,ilosc,jednostka;
         private WierszAdapter adapter;
         private ArrayList<Skladnik> data = new ArrayList<>();
+        private boolean p_nazwa,p_ilosc,p_jed;
 
         @Override
         public void onResume(){
@@ -81,30 +83,38 @@ public class Formularz extends FragmentActivity {
             list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 public boolean onItemLongClick(AdapterView<?> arg0, View v, int index, long arg3) {
                     adapter.remove(adapter.getItem(index));
-                    data.remove(index);
                     Toast.makeText(getActivity(), "Usuniete", Toast.LENGTH_LONG).show();
                     return false;
                 }
             });
             nazwa = (EditText)rootView.findViewById(R.id.nazwa);
-            nazwa.setOnClickListener(new View.OnClickListener() {
+            nazwa.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
-                    nazwa.setText("");
+                public boolean onTouch(View view, MotionEvent event) {
+                    if(!p_nazwa)
+                        nazwa.setText("");
+                    p_nazwa=true;
+                    return false;
                 }
             });
             ilosc = (EditText)rootView.findViewById(R.id.ilosc);
-            ilosc.setOnClickListener(new View.OnClickListener() {
+            ilosc.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
-                    ilosc.setText("");
+                public boolean onTouch(View view, MotionEvent event) {
+                    if(!p_ilosc)
+                        ilosc.setText("");
+                    p_ilosc=true;
+                    return false;
                 }
             });
             jednostka = (EditText)rootView.findViewById(R.id.jednostka);
-            jednostka.setOnClickListener(new View.OnClickListener() {
+            jednostka.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
-                    jednostka.setText("");
+                public boolean onTouch(View view, MotionEvent event) {
+                    if(!p_jed)
+                        jednostka.setText("");
+                    p_jed=true;
+                    return false;
                 }
             });
             add = (Button)rootView.findViewById(R.id.button);
@@ -124,6 +134,9 @@ public class Formularz extends FragmentActivity {
                     adapter = new WierszAdapter(rootView.getContext(), R.layout.wiersz, data);
                     list = (ListView) rootView.findViewById(R.id.Lista);
                     list.setAdapter(adapter);
+                    nazwa.setText("");
+                    jednostka.setText("");
+                    ilosc.setText("");
                 }
             });
             return rootView;
@@ -137,6 +150,7 @@ public class Formularz extends FragmentActivity {
 
     public static class NowyPrzepis extends Fragment{
         private PrzepisAdapter adapter;
+        private boolean p_tekst,p_czas;
         private EditText tekst,czas;
         private ArrayList<Przepis> data = new ArrayList<>();
         private ListView list;
@@ -155,31 +169,40 @@ public class Formularz extends FragmentActivity {
             list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 public boolean onItemLongClick(AdapterView<?> arg0, View v, int index, long arg3) {
                     adapter.remove(adapter.getItem(index));
-                    data.remove(index);
                     Toast.makeText(getActivity(), "Usuniete", Toast.LENGTH_LONG).show();
                     return false;
                 }
             });
             tekst = (EditText)rootView.findViewById(R.id.tekst);
-            tekst.setOnClickListener(new View.OnClickListener() {
+            tekst.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
-                    tekst.setText("");
+                public boolean onTouch(View view, MotionEvent event) {
+                    if(!p_tekst)
+                        tekst.setText("");
+                    p_tekst=true;
+                    return false;
                 }
             });
             czas = (EditText)rootView.findViewById(R.id.czas);
-            czas.setOnClickListener(new View.OnClickListener() {
+            czas.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
-                    czas.setText("");
+                public boolean onTouch(View view, MotionEvent event) {
+                    if(!p_czas)
+                        czas.setText("");
+                    p_czas=true;
+                    return false;
                 }
             });
+
             add = (Button)rootView.findViewById(R.id.add);
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Przepis przepis = new Przepis();
-                    przepis.setText(tekst.getText().toString());
+                    String temp = tekst.getText().toString();
+                    if(temp.length()>=50)
+                        temp=temp.substring(0,50)+"...";
+                    przepis.setText(temp);
                     try {
                         przepis.setCzas(Integer.parseInt(czas.getText().toString()));
                     }catch (NumberFormatException e){
@@ -197,13 +220,24 @@ public class Formularz extends FragmentActivity {
             return rootView;
         }
     }
+    public static class NowyOpis extends Fragment{
+        private View rootView;
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            rootView = inflater.inflate(R.layout.potrawa_nowy, container, false);
+            return rootView;
+        }
+
+    }
     public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
         public AppSectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
         @Override
         public Fragment getItem(int i) {
-            if(i!=2)
+            if(i==0)
+                return new NowyOpis();
+            else if(i==1)
                 return new NowySkladnik();
             else
                 return new NowyPrzepis();

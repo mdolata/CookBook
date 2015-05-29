@@ -3,38 +3,38 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="160dp"
-        android:background="#ffdadada">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#ffffff">
 
         <TextView
-            android:layout_width="373dp"
-            android:layout_height="120dp"
+            android:layout_width="282dp"
+            android:layout_height="75dp"
             android:text="New Text"
             android:id="@+id/przepis"
-            android:paddingStart="17dp"
+            android:textSize="17dp"
             android:textColor="#ff414754"
-            android:paddingTop="15dp" />
+            android:paddingTop="15dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:background="#ffffffff">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:id="@+id/imageView4"
-                android:src="@drawable/clock" />
+            android:background="#ffffffff"
+            android:paddingTop="15dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="czas min"
                 android:id="@+id/czas"
-                android:textColor="#ff414754" />
+                android:textColor="#ff414754"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:paddingLeft="5dp" />
         </LinearLayout>
 
     </LinearLayout>
