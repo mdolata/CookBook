@@ -73,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinner"
+            android:entries="@array/obiad_array"
             android:layout_gravity="center_horizontal" />
 
         <Spinner
@@ -104,6 +105,16 @@
                 android:paddingLeft="40dp"
                 android:paddingTop="10dp"
                 android:textSize="30dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:id="@+id/button4"
+                android:background="#ff1cbe75"
+                android:paddingLeft="50dp"
+                android:textSize="35dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView

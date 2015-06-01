@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import model.Potrawa;
-import model.Przepis;
-import model.Skladnik;
 import sql.Zarzadca;
 
 /**
@@ -148,6 +147,10 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(getApplicationContext(), Formularz.class);
             startActivity(intent);
         }
+        else if(getResources().getStringArray(R.array.obiad_array)[position].equals("Lista Zakupow")){
+            Intent intent = new Intent(getApplicationContext(), ListaZakupow.class);
+            startActivity(intent);
+        }
         else {
             Fragment fragment = new Obiady();
             Bundle args = new Bundle();
@@ -166,17 +169,18 @@ public class MainActivity extends Activity {
     public static class Obiady extends Fragment{
         private GridAdapter adapter;
         private GridViewWithHeaderAndFooter grid;
+        private GridView gw;
         private ArrayList<Potrawa> data;
         private Zarzadca z;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
             int x = getArguments().getInt("ID");
+            z = new Zarzadca(getActivity());
             View rootView = inflater.inflate(R.layout.fragment_obiady, container, false);
             /*
                 Reczne wrzucanie wartosci do bazy
-             */
-            z = new Zarzadca(getActivity());
+
             Skladnik skladnik = new Skladnik();
             skladnik.setId_potrawy(1);
             skladnik.setJednoska("kg");
@@ -199,36 +203,61 @@ public class MainActivity extends Activity {
             z.dodaj(obiad);
             obiad.setKategoria("Dania Glowne");
             z.dodaj(obiad);
-
+            */
             String kategoria = getResources().getStringArray(R.array.obiad_array)[x];
             data = z.getPotrawa(kategoria);
-            adapter = new GridAdapter(rootView.getContext(),R.layout.row_grid,data);
-            grid = (GridViewWithHeaderAndFooter)rootView.findViewById(R.id.gridView1);
-            LayoutInflater layoutInflater = LayoutInflater.from(rootView.getContext());
-            View headerView = layoutInflater.inflate(R.layout.header_grid, null);
-            TextView text = (TextView) headerView.findViewById(R.id.item_text);
-            text.setText("Trololo");
-            headerView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Potrawa potrawa = data.get(0);
-                    Intent intent = new Intent(getActivity().getApplicationContext(), ObiadActivity.class);
-                    intent.putExtra("potrawa", potrawa);
-                    startActivity(intent);
+            System.out.println("ONCREATE "+data.size());
+            int len = data.size();
+
+            if(len>0){
+                final Potrawa h = data.get(0);
+                if(len<3){
+                    rootView = inflater.inflate(R.layout.grid_zero, container, false);
+                    gw = (GridView) rootView.findViewById(R.id.gridView1);
+                    gw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Potrawa potrawa = data.get(position);
+                            Intent intent = new Intent(getActivity().getApplicationContext(), ObiadActivity.class);
+                            intent.putExtra("potrawa", potrawa);
+                            startActivity(intent);
+                        }
+                    });
                 }
-            });
-            if(data.size()>1){
-                grid.addHeaderView(headerView);
-                grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Potrawa potrawa = data.get(position+1);
-                        Intent intent = new Intent(getActivity().getApplicationContext(), ObiadActivity.class);
-                        intent.putExtra("potrawa", potrawa);
-                        startActivity(intent);
-                    }
-                });
-                grid.setAdapter(adapter);
+                else{
+                    rootView = inflater.inflate(R.layout.fragment_obiady, container, false);
+                    data.remove(0);
+                    grid = (GridViewWithHeaderAndFooter) rootView.findViewById(R.id.gridView1);
+                    LayoutInflater layoutInflater = LayoutInflater.from(rootView.getContext());
+                    View headerView = layoutInflater.inflate(R.layout.header_grid, null);
+                    TextView text = (TextView) headerView.findViewById(R.id.item_text);
+                    text.setText(h.getNazwa());
+                    grid.addHeaderView(headerView);
+                    headerView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity().getApplicationContext(), ObiadActivity.class);
+                            intent.putExtra("potrawa", h);
+                            startActivity(intent);
+                        }
+
+                    });
+                    grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Potrawa potrawa = data.get(position);
+                            Intent intent = new Intent(getActivity().getApplicationContext(), ObiadActivity.class);
+                            intent.putExtra("potrawa", potrawa);
+                            startActivity(intent);
+                        }
+                    });
+
+                }
+                adapter = new GridAdapter(rootView.getContext(), R.layout.row_grid, data);
+                if(len<3)
+                    gw.setAdapter(adapter);
+                else
+                    grid.setAdapter(adapter);
             }
             getActivity().setTitle(kategoria);
             return rootView;

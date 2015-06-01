@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import model.Potrawa;
 import model.Przepis;
 import model.Skladnik;
+
 /**
  * Created by kgb on 26.05.2015.
  */
@@ -46,12 +47,19 @@ public class Zarzadca extends SQLiteOpenHelper {
                         "ilosc integer ," +
                         "jednostka text);" +
                         "");
+        db.execSQL(
+                "create table zakupy(" +
+                        "id integer primary key autoincrement," +
+                        "nazwa text ," +
+                        "ilosc integer ," +
+                        "jednostka text);" +
+                        "");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {}
 
-    public void dodaj(Potrawa kontakt){
+    public long dodaj(Potrawa kontakt){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues wartosci = new ContentValues();
         wartosci.put("kategoria",kontakt.getKategoria());
@@ -59,7 +67,7 @@ public class Zarzadca extends SQLiteOpenHelper {
         wartosci.put("ilosc", kontakt.getIlosc());
         wartosci.put("img",kontakt.getImg());
         wartosci.put("nazwa", kontakt.getNazwa());
-        db.insertOrThrow("obiady",null, wartosci);
+        return db.insertOrThrow("obiady",null, wartosci);
     }
     public Potrawa get(int id){
         Potrawa obiad = new Potrawa();
@@ -145,5 +153,32 @@ public class Zarzadca extends SQLiteOpenHelper {
         wartosci.put("ilosc",skladnik.getIlosc());
         wartosci.put("jednostka",skladnik.getJednoska());
         db.insertOrThrow("skladniki",null, wartosci);
+    }
+    public void dodaj_zak(Skladnik skladnik){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues wartosci = new ContentValues();
+        wartosci.put("nazwa",skladnik.getNazwa());
+        wartosci.put("ilosc",skladnik.getIlosc());
+        wartosci.put("jednostka",skladnik.getJednoska());
+        db.insertOrThrow("zakupy",null, wartosci);
+    }
+    public void usun_zak(Skladnik skladnik){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("zakupy","id ="+skladnik.getId(),null);
+    }
+
+    public ArrayList<Skladnik> getZakupy(){
+        ArrayList<Skladnik> skladniki = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor kursor = db.rawQuery("select id,nazwa,ilosc,jednostka from zakupy",null);
+        while (kursor.moveToNext()){
+            Skladnik skladnik = new Skladnik();
+            skladnik.setId(kursor.getInt(0));
+            skladnik.setNazwa(kursor.getString(1));
+            skladnik.setIlosc(kursor.getInt(2));
+            skladnik.setJednoska(kursor.getString(3));
+            skladniki.add(skladnik);
+        }
+        return skladniki;
     }
 }

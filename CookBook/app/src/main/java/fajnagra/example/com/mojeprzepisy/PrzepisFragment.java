@@ -24,7 +24,6 @@ import model.*;
  */
 
 public class  PrzepisFragment extends Fragment {
-    private Intent mServiceIntent;
     private Potrawa obiad;
     private ArrayList<Przepis> przepisy;
     private static CountDownTimer c;
@@ -32,7 +31,7 @@ public class  PrzepisFragment extends Fragment {
     private Button prev,next,pauza,stop,play;
     private int len,czas_v;
     private int i;
-    public  boolean leci,pauza_v;
+    public  boolean leci;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,7 +67,6 @@ public class  PrzepisFragment extends Fragment {
                             mNotificationManager.notify(0, mBuilder.build());
                             lcd.setText("00:00");
                             leci=false;
-
                         }
                     }.start();
                 }
@@ -118,7 +116,6 @@ public class  PrzepisFragment extends Fragment {
                 }
                 if (len > 0)
                     if (i + 1 < len) setPrzepis(++i);
-
             }
         });
         if(len>0)

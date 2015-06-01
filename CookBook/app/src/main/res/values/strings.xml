@@ -10,6 +10,11 @@
     <string-array name="obiad_array">
         <item>Dania Glowne</item>
         <item>Zupy</item>
+        <item>Lista Zakupow</item>
         <item>Nowy</item>
+    </string-array>
+    <string-array name="kategorie">
+        <item>Dania Glowne</item>
+        <item>Zupy</item>
     </string-array>
 </resources>

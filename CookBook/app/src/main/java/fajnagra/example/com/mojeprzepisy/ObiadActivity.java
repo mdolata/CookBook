@@ -65,9 +65,11 @@ public class ObiadActivity extends FragmentActivity {
         WierszAdapter adapter;
         ArrayList<Skladnik> data;
         Button add;
+        Zarzadca z;
         @Override
         public  View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
+            z = new Zarzadca(getActivity());
             ObiadActivity obiadActivity = (ObiadActivity)getActivity();
             data = obiadActivity.skladniki;
             View view = inflater.inflate(R.layout.skladniki,container,false);
@@ -75,7 +77,9 @@ public class ObiadActivity extends FragmentActivity {
             add.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Not supportet yet", Toast.LENGTH_SHORT).show();
+                    for(Skladnik s:data)
+                        z.dodaj_zak(s);
+                    Toast.makeText(getActivity(), "Dodalem do Listy Zakupow", Toast.LENGTH_LONG).show();
                 }
             });
             if(data.size()>0) {
@@ -108,15 +112,16 @@ public class ObiadActivity extends FragmentActivity {
             osoby.setText(obiad.getIlosc()+" osoby");
             if(Integer.parseInt(obiad.getPoziom())==0){
                 poziom_txt.setText("Latwy");
-                poziom_img.setImageDrawable(getResources().getDrawable(R.drawable.low,null));
+                poziom_img.setImageDrawable(getResources().getDrawable(R.drawable.low));
+
             }
             else if(Integer.parseInt(obiad.getPoziom())==1){
                 poziom_txt.setText("Sredni");
-                poziom_img.setImageDrawable(getResources().getDrawable(R.drawable.mid, null));
+                poziom_img.setImageDrawable(getResources().getDrawable(R.drawable.mid));
             }
             else{
                 poziom_txt.setText("Trudny");
-                poziom_img.setImageDrawable(getResources().getDrawable(R.drawable.hard, null));
+                poziom_img.setImageDrawable(getResources().getDrawable(R.drawable.hard));
             }
             return rootView;
         }
